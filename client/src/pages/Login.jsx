@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import {Button, Container,Paper, TextField, Typography} from'@mui/material';
+import {Avatar, Button, Container,IconButton,Paper, Stack, TextField, Typography} from'@mui/material';
+import {CameraAltIcon} from '@mui/icons-material';
 const Login = () => {
   const [isLogin,setIsLogin]= useState(true);
   const toggleLogin=()=>setIsLogin((prev)=> !prev);
@@ -26,6 +27,24 @@ const Login = () => {
         width:"100%",
         marginTop: "1rem"
       }}>
+        <Stack 
+        position={"relative"}
+        width={"10rem"}
+        margin={"auto"}
+        >
+          <Avatar sx={{
+            width:"10rem",
+            height:"10rem",
+            objectFit:"contain"
+          }}/>
+          <IconButton>
+            <>
+            <CameraAltIcon/>
+            <VisuallyHidden>Upload Avatar</VisuallyHidden>
+            </>
+          </IconButton>
+
+        </Stack>
         <TextField
         required fullWidth
         label="Username"
