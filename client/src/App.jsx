@@ -11,7 +11,7 @@ import Login from'./pages/Login';
 import Home from'./pages/Home';
 import ProtectRoute from './components/auth/ProtectRoute'
 import NotFound from './pages/NotFound';
-let user =false;
+let user =true;
 const App = () => {
   return (
     <Router>
