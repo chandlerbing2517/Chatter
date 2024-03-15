@@ -1,11 +1,13 @@
 import React from 'react'
+import appLayout from '../components/layout/appLayout'
 
 const Chats = () => {
-  return (
-    <div>
+  return (   <div>
       Chats
     </div>
+ 
   )
 }
 
-export default Chats
+const EnhancedChats = appLayout()(Chats);
+export default EnhancedChats;
