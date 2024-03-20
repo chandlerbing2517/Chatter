@@ -1,24 +1,37 @@
 import { AppBar, Toolbar, Box, Typography, IconButton, Tooltip } from '@mui/material'
-import React from 'react'
+import React, { Suspense, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import { orange } from '../../constants/color'
-import {Menu as MenuIcon, Search as SearchIcon, Add as AddIcon, Group as GroupIcon} from '@mui/icons-material';
-
+import {Menu as MenuIcon, Notifications as NotificationsIcon ,Search as SearchIcon, Add as AddIcon, Group as GroupIcon, Logout as LogoutIcon} from '@mui/icons-material';
+import SearchDialog from '../layout/specific/Search'
 
 const Header = () => {
+  const navigate = useNavigate();
+  const[isMobile,setIsMobile]=useState(false);
+  const[isSearch,setIsSearch]=useState(false);
+  const[isNewGroup,setIsNewGroup]=useState(false);
+  const[isNotification,setIsNotification]=useState(false);
   const handleMobile=()=>
 {
-  console.log('Handle Mobile');
+  setIsMobile((prev)=>(!prev));
 }
 const openSearch=()=>
 {
-  console.log('Open Search');
+  setIsSearch((prev)=>(!prev));
 }
 const openNewGroup=()=>
 {
-  console.log('Open New Group');
+  setIsNewGroup((prev)=>(!prev));
 }
-const navigate = useNavigate();
+const logoutHandler=()=>
+{
+  console.log('Logout Handler');
+}
+const openNotification=()=>
+{
+  setIsNotification((prev)=>(!prev));
+}
+
 const navigateToGroup = () => navigate("/groups"); 
     
   return (
@@ -59,10 +72,19 @@ const navigateToGroup = () => navigate("/groups");
             title={"Manage Group"}
             icon={<GroupIcon />}
             onClick={navigateToGroup} />
+            <Iconbtn
+            title={"Notifications"}
+            icon={<NotificationsIcon />}
+            onClick={logoutHandler} />
+            <Iconbtn
+            title={"Logout"}
+            icon={<LogoutIcon />}
+            onClick={openNotification} />
           </Box>
         </Toolbar>
       </AppBar>
     </Box>
+    {isSearch && (<Suspense fallback={<div>Loading...</div>}><SearchDialog /></Suspense>)}
     </>
   );
 };

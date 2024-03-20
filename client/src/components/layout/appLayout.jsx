@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from './Header'
-import Title from '../shared/Title'
+import Title from '../auth/shared/Title'
 import {Grid} from '@mui/material'
 const appLayout = () => (WrappedComponent)=> {
     return(props)=>{
