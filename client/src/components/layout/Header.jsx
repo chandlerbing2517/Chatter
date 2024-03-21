@@ -3,8 +3,10 @@ import React, { Suspense, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import { orange } from '../../constants/color'
 import {Menu as MenuIcon, Notifications as NotificationsIcon ,Search as SearchIcon, Add as AddIcon, Group as GroupIcon, Logout as LogoutIcon} from '@mui/icons-material';
-import SearchDialog from '../layout/specific/Search'
-
+import { lazy } from 'react';
+const SearchDialog =lazy(()=> import('../specific/Search'));
+const Notification =lazy(()=> import ('../specific/Notifications'));
+const NewGroupDialog=lazy(()=> import('../specific/NewGroups'));
 const Header = () => {
   const navigate = useNavigate();
   const[isMobile,setIsMobile]=useState(false);
@@ -84,7 +86,18 @@ const navigateToGroup = () => navigate("/groups");
         </Toolbar>
       </AppBar>
     </Box>
-    {isSearch && (<Suspense fallback={<div>Loading...</div>}><SearchDialog /></Suspense>)}
+    {isSearch && 
+    (<Suspense fallback={<div>Loading...</div>}>
+      <SearchDialog />
+      </Suspense>)}
+        {isNotification && 
+    (<Suspense fallback={<div>Loading...</div>}>
+      <NotificationDialog />
+      </Suspense>)}
+          {isNewGroup && 
+    (<Suspense fallback={<div>Loading...</div>}>
+      <NewGroupDialog />
+      </Suspense>)}
     </>
   );
 };
